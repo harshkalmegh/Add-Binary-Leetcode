@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body></body>
+</html>
+<script>
+  /**
+   * Algorithm
+   * 1. create a function to add binary which accepts two arguments as string
+   * 2. handle all edgecases
+   * 3. convert string in array by split method
+   * 4. loop the array and maintain carry as 0
+   * 4. check condition for 1-1, 1-0, 0-1, 0-0
+   * 4.1. if true return 10, 1, 1, 0 accordingly
+   * 4.2. if 10 then push 0
+   * 5. return arr.join
+   */
+
+  var addBinary = function (a, b) {
+    if (!a || !b || typeof a !== "string" || typeof b !== "string") {
+      return "Enter a Proper Value";
+    }
+    let carry = 0;
+    let result = "";
+
+    let len1 = a.length - 1;
+    let len2 = b.length - 1;
+
+    for (; len1 >= 0 || len2 >= 0 || carry > 0; len1--, len2--) {
+      let sum = (+a[len1] || 0) + (+b[len2] || 0) + carry;
+      if (sum > 1) {
+        sum = sum % 2;
+        carry = 1;
+      } else {
+        carry = 0;
+      }
+      result = `${sum}${result}`;
+    }
+    return result;
+  };
+
+  console.log(addBinary("11", "1"));
+</script>
